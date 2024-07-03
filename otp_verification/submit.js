@@ -49,7 +49,7 @@ function generateOTP(event) {
           localStorage.setItem("profile_picture",data.profile_picture);
           localStorage.setItem("access",data.access);
           localStorage.setItem('refresh',data.refresh);
-          window.location.href = `../index.html`;
+          window.location.href = `../profile_pic_upload/index.html`;
         }
          else {
           

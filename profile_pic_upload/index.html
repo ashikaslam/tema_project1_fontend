@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <title>Input Image With Preview Image</title>
+</head>
+<body>
+    
+    <div class="container">
+        <input type="file" id="file" accept="image/*" hidden>
+        <p>Please upload your profile picture to make it easier for friends and others to find you.</p>
+        <div class="img-area" data-img="">
+            <i class='bx bxs-cloud-upload icon'></i>
+            <p>Image size must be less than <span>10MB</span></p>
+        </div>
+        <button class="select-image" id="select">Select Image</button>
+        <button class="submit-image invisible" id="submit" onclick="submit_img()">Submit</button>
+        <a href="../index.html" class="no-decoration"><button class="skip-image" id="skip">Skip</button></a>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
