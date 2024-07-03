@@ -1,0 +1,14 @@
+echo "# tema_project1_fontend" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/ashikaslam/tema_project1_fontend.git
+git push -u origin main
+
+
+
+
+git remote add origin https://github.com/ashikaslam/tema_project1_fontend.git
+git branch -M main
+git push -u origin main
