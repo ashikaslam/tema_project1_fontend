@@ -1,4 +1,4 @@
-function validateForm() {
+function Registration() {
   let isValid = true;
 
   // Get form data
@@ -159,7 +159,6 @@ function validateForm() {
           localStorage.setItem("token1", token1);
           localStorage.setItem("token2", token2);
           if (data.status == 1) {
-           
             window.location.href = `otp_verification/index.html`;
           }
           // 'message' property exists, perform your action
@@ -169,10 +168,10 @@ function validateForm() {
             errorString ==
             "{'email': [ErrorDetail(string='user with this email already exists.', code='unique')]}"
           ) {
-           
             document.getElementById("emailAddressError").innerText =
-            "user with this email already exists.";
-          document.getElementById("emailAddressError").style.display = "block";
+              "user with this email already exists.";
+            document.getElementById("emailAddressError").style.display =
+              "block";
           }
         }
 
@@ -224,5 +223,78 @@ function validateEmail(email) {
   } else {
     document.getElementById("emailAddressError").style.display = "none";
     return true;
+  }
+}
+//////////////////////////////////
+
+function login() {
+  let isValid = true;
+  let password = document.getElementById("password1").value;
+  let email = document.getElementById("emailAddress1").value;
+  // Clear previous error messages
+  document.getElementById("passwordError").style.display = "none";
+  document.getElementById("emailAddressError").style.display = "none";
+
+  console.log(password, email);
+
+  if (!validateEmail(email)) {
+    isValid = false;
+  }
+  if (password.length < 6) {
+    document.getElementById("passwordError").innerText =
+      "Password must be at least 6 characters long";
+    document.getElementById("passwordError").style.display = "block";
+    isValid = false;
+  }
+  ///
+  /// data taking complte
+  let info = {
+    password,
+    email,
+  };
+  console.log(info);
+  /// request making
+  if (isValid) {
+    fetch("http://127.0.0.1:8000/auth/login/", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(info),
+    })
+      .then((res) => {
+        return res.json(); // Explicitly return res.json()
+      })
+
+      .then((data) => {
+        if ("message" in data) {
+          if (data.status == 1) {
+            console.log(data);
+            localStorage.setItem("user_id", data.user_id);
+            localStorage.setItem("profile_id", data.profile_id);
+            localStorage.setItem("profile_picture", data.profile_picture);
+            localStorage.setItem("access", data.access);
+            localStorage.setItem("refresh", data.refresh);
+            window.location.href = `../profile_pic_upload/index.html`;
+            window.location.href = `index.html`;
+          } else {
+            document.getElementById("passwordError").innerText =
+              "Your email address and password do not match our records. Please check your credentials and try again.";
+            document.getElementById("passwordError").style.display = "block";
+            isValid = false;
+          }
+        } else {
+          document.getElementById("passwordError").innerText =
+            "Your email address and password do not match our records. Please check your credentials and try again.";
+          document.getElementById("passwordError").style.display = "block";
+          isValid = false;
+        }
+      })
+
+      .catch((err) => {
+        document.getElementById("passwordError").innerText =
+          "Your email address and password do not match our records. Please check your credentials and try again.";
+        document.getElementById("passwordError").style.display = "block";
+        isValid = false;
+        localStorage.clear();
+      });
   }
 }

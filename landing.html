@@ -39,6 +39,8 @@
                     </div>    
                 </div>
             </div>
+
+
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <div class="login-reg-bg">
                     <div class="log-reg-area sign">
@@ -46,21 +48,26 @@
                             
                         <form method="post">
                             <div class="form-group">    
-                              <input type="text" id="input" required="required"/>
-                              <label class="control-label" for="input">Username</label><i class="mtrl-select"></i>
+                              <input type="text" id="emailAddress1" required="required"/>
+                              <label class="control-label" for="input">Email Address</label><i class="mtrl-select"></i>
+                              <small class="error-message" id="emailAddressError"></small>
                             </div>
                             <div class="form-group">    
-                              <input type="password" required="required"/>
+                              <input type="password" required="required" id="password1"/>
                               <label class="control-label" for="input">Password</label><i class="mtrl-select"></i>
+                              <small class="error-message" id="passwordError"></small>
                             </div>
                             
                             <a href="#" title="" class="forgot-pwd">Forgot Password?</a>
                             <div class="submit-btns">
-                                <button class="mtr-btn signin" type="button"><span>Login</span></button>
+                                <button class="mtr-btn signin" type="button" onclick="login()"><span>Login</span></button>
                                 <button class="mtr-btn signup" type="button"><span>Register</span></button>
                             </div>
                         </form>
                     </div>
+
+
+
                     <div class="log-reg-area reg">
                         <h2 class="log-title">Register</h2>
                         <form id="registrationForm" method="post">
@@ -111,7 +118,7 @@
                                 <label for="showPassword">Show Password</label>
                             </div>
                             <div class="submit-btns">
-                                <button class="mtr-btn signup" type="submit" onclick="validateForm()"><span>Register</span></button>
+                                <button class="mtr-btn signup" type="submit" onclick="Registration()"><span>Register</span></button>
                             </div>
                         </form>
                     </div>
